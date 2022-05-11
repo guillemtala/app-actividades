@@ -24,10 +24,46 @@ body {
     background-color: #111419;
 }
 
+.body3 {
+    margin: 0;
+    display: flex;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+    background-color: #111419;
+    padding-top: 4vw;
+    padding-bottom: 5vw;
+}
+
 .flex {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.imagen img {
+    width: 40vw;
+    padding: 3vw;
+    border-radius: 15px;
+}
+
+.imagen {
+    border-radius: 15px;
+}
+
+.target {
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    height: 25vw;
+}
+
+.click:active i {
+    background-color: red;
+}
+
+.click:hover i {
+    background-color: red;
 }
 
 
@@ -35,6 +71,10 @@ body {
 
 .padding-register {
     padding: 3vw;
+}
+
+.border {
+    border-radius: 15px;
 }
 
 

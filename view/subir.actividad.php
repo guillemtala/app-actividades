@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION["email_usu"])){
+    header("Location:login.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,19 +38,33 @@
                         <br>
                         <label for="psw"><b>Descripcion</b></label>
                         <br>
-                        <input class="form-control" type="text" placeholder="Escribe la descripcion de tu actividad" name="descripcion">
+                        <input class="form-control" type="text" placeholder="Escribe la descripcion de tu actividad" name="descripcion" required>
                     </div>
                     <div class="mb-3 ">
                         <br>
                         <label for="psw"><b>Foto</b></label>
                         <br>
-                        <input class="form-control" type="file" placeholder="Escoje una imagen" name="foto">
+                        <input class="form-control" type="file" placeholder="Escoje una imagen" name="foto" required>
+                    </div>
+                    <div>
+                        <br>
+                        <label for="topic"><b>Topic</b></label>
+                        <br>
+                        <select name="topic" required>
+
+                            <option>Matematicas</option>
+
+                            <option>Informatica</option>
+                      
+                          </select>
+                        <br>
+                        <br>
                     </div>
                     <div class="mb-3 ">
-                        <input type="radio" name="opcion" value="false">
+                        <input type="radio" name="opcion" value="true" required>
                         <label for="opcion">Público</label>
 
-                        <input type="radio" name="opcion" value="true">
+                        <input type="radio" name="opcion" value="false" required>
                         <label for="opcion">Privado</label>
                     </div>
                     <br>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION["email_usu"])){
+    header("Location:login.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre nosotros</title>
+    <title>Actividades</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -17,7 +23,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="../index.html">#AppName</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,19 +32,34 @@
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 50vh;">
                     <li class="nav-item">
-                        <a class="nav-link active disabled" aria-current="page" href="#">Sobre nosotros</a>
+                        <a class="nav-link" aria-current="page" href="./nosotros.php">Sobre nosotros</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="./actividades.php">Actividades</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active disabled" href="./mis-actividades.php">Mis Actividades</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <?php
+                        /* session_start();
+                        if(isset($_SESSION["email_usu"])){
+                            echo "<li class='nav-item'>";
+                            echo "<a class='nav-link' href='./mis-actividades.html'>Mis Actividades</a>";
+                            echo "</li>";
+                        } */
+                        
+                        ?>
+                    </li> -->
+                    
                 </ul>
                 <form class="d-flex">
                     <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
                     <a href="btn-upload.php"><button class="btn btn-light form-control me-1" type="button"><i
                             class="fa-solid fa-arrow-up-from-bracket"></i></button></a>
                             <?php
-                            session_start();
+                            /* session_start(); */
                             //$_SESSION["email_usu"]=$correo;
                             
                             if(isset($_SESSION["email_usu"])){
@@ -53,72 +74,43 @@
             </div>
         </div>
     </nav>
-    <!-- Topics -->
 
-    <div class="row-c padding-m">
-        <div class="column-66 padding-m padding-right">
-            <h5>Topics</h5>
-            <a href="topics.actividades.php?id=mates"><button type="button" class="btn btn-primary mt-1">matemáticas</button></a>
-            <a href="topics.actividades.php?id=info"><button type="button" class="btn btn-info mt-1">informática</button>
-            <button type="button" class="btn btn-dark mt-1">...</button>
-        </div>
-    </div>
-
-    <!-- Intro -->
-    <header class="text-white flex padding-l">
-        <h1><strong>#AppName</strong></h1>
-    </header>
-    <div class="row-c padding-m">
+    <!-- listado de actividades -->
+    <div class="row-c">
         <div class="column-1 padding-m">
-            <h5>Navega</h5>
-        </div>
-        <div class="column-66 padding-m padding-right">
-            <!-- <h2><strong>#AppName</strong> es un club para explorar, desarrollar y compartir nuestra creatividad natural</h2> -->
-            <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, corporis ipsa. Non, exercitationem! Vel enim exercitationem dolores, incidunt, molestias praesentium magnam cumque nostrum aperiam ducimus tempore? Fugit placeat debitis asperiores.</h4>
-        </div>
-    </div>
-
-    <!-- Random de actividades -->
-
-    <div class="row-c padding-m">
-        <div class="column-1 padding-m">
-            <h5>Subidas recientemente</h5>
+            <h4 class="padding-m">Mis actividades</h4>
         </div>
 
-        <div class="column-1 padding-s">
-            
-            <?php
-                $cantidad = 4;
+        <?php
+                
+               
                 $connection = mysqli_connect('localhost', 'root', '', 'bd_actividades');
-                $sql2 = "SELECT * FROM tbl_actividades WHERE opcion_act='Publico';";
-                $query= mysqli_query($connection, $sql2);
-                $numFilas = mysqli_num_rows($query);
-                /* echo $numFilas;  */
-                $cantidadPaginas = $numFilas-$cantidad;
-
-                $sql3 = "SELECT * FROM tbl_actividades WHERE opcion_act='Publico' ORDER BY hora_act ASC LIMIT $cantidadPaginas, $cantidad;";
-                $query2 = mysqli_query($connection, $sql3);
+                $sql = "SELECT * FROM tbl_actividades WHERE `correo_act`='{$_SESSION["email_usu"]}';";
+                /* echo $sql; */
+                $listadodept= mysqli_query($connection, $sql);
 
                 $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
-                foreach ($query2 as $actividad) {
+                foreach ($listadodept as $alumno) {
                     ?>
-                    <div class="column-4 padding-s">
+                    <div class="column-3 padding-mobile">
                         <?php
-                    $rutacompleta="http://".$ruta.$actividad['foto_act'];
+                    $rutacompleta="http://".$ruta.$alumno['foto_act'];
                     /* echo $rutacompleta;
                     
                     echo '<br>'; */
-                    /* echo $actividad['id']; */
-                    /* $id=$actividad['id']; */
-                    echo  "<a href='./actividad.php?id={$actividad['id']}'><img src='{$rutacompleta}' class='target'></a>";
+                    /* echo $alumno['id']; */
+                    /* $id=$alumno['id']; */
+                    echo  "<a href='./actividad.php?id={$alumno['id']}'><img src='{$rutacompleta}' class='target'></a>";
                     ?>
-                    </div>
-                    <?php
-                }
-                    ?>
+                    <div style="float: right;" class="padding-m">
+                <button class="btn btn-light m-1" type="submit"><i class="fa-solid fa-link"></i></button>
+                <button class="btn btn-light m-1" type="submit"><i class="fa-solid fa-heart"></i></button>
+            </div>
         </div>
+        <?php
+                 } 
+            ?>
     </div>
-
 </body>
 
 </html>
