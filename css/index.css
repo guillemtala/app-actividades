@@ -24,6 +24,11 @@ body {
     background-color: #111419;
 }
 
+.boton {
+    display: inline;
+    padding: 3px;
+}
+
 .body3 {
     margin: 0;
     display: flex;

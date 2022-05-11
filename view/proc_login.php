@@ -28,7 +28,7 @@ if(isset($_POST["iniciar"])){
             /* $_SESSION['like'] */
             //echo "Usuario correcto";
             //echo "<script>window.location.href='../index.html';</script>";
-            header("Location:../index.html");
+            header("Location:../index.php");
         }else {
             // echo "<script>window.location.href='./login.html';</script>";
             ?>

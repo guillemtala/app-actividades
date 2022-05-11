@@ -32,7 +32,7 @@ if($opcion=='true'){
 
 /* echo $pubpriv; */
 
-$path="/www/app-actividades/img";
+$path="../img";
 $destino=$_SERVER['DOCUMENT_ROOT'].$path.'/'.$foto['name']; 
 
 if(($foto['size']<1000*1024) && ($foto['type']=="image/jpeg" || $foto['type']=="image/png" || $foto['type']=="image/gif")){

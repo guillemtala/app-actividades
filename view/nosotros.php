@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">#AppName</a>
+            <a class="navbar-brand" href="../index.php">#AppName</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -99,12 +99,12 @@
                 $sql3 = "SELECT * FROM tbl_actividades WHERE opcion_act='Publico' ORDER BY hora_act ASC LIMIT $cantidadPaginas, $cantidad;";
                 $query2 = mysqli_query($connection, $sql3);
 
-                $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
+                $ruta="../img/";
                 foreach ($query2 as $actividad) {
                     ?>
                     <div class="column-4 padding-s">
                         <?php
-                    $rutacompleta="http://".$ruta.$actividad['foto_act'];
+                    $rutacompleta=$ruta.$actividad['foto_act'];
                     /* echo $rutacompleta;
                     
                     echo '<br>'; */

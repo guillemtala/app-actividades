@@ -22,13 +22,25 @@
     <main>
         <h1>Disfruta de compartir 🚀</h1>
         <p><strong>#AppName</strong> es una plataforma donde profesoras y profesores de todo el mundo pueden compartir actividades, pasar el rato y aprender unos con otros; colaborando en proyectos y compartiendo ideas crearemos juntos el futuro de la educación</p>
-
+    
         <a href="./view/nosotros.php"><button type="button" class="btn btn-success"><i
                     class="fa-solid fa-chalkboard-user"></i> sobre nosotros</button></a>
         <a href="./view/actividades.php"><button type="button" class="btn btn-warning"><i
                     class="fa-solid fa-book-open-reader"></i> actividades</button></a>
-        <a href="./view/login.html"><button type="button" class="btn btn-light"><i class="fa-solid fa-right-to-bracket"></i> acceder</button></a>
-        <a href="./view/register.html"><button type="button" class="btn btn-light"><i class="fa-solid fa-address-card"></i> Nueva cuenta</button></a>
+        <?php
+            session_start();
+            if(!isset($_SESSION["email_usu"])){
+                echo '<div class="boton">';
+                echo "<a href='./view/login.html'><button type='button' class='btn btn-light'><i class='fa-solid fa-right-to-bracket'></i> Acceder</button></a>";
+                echo '</div>';
+                echo '<div class="boton">';
+                echo "<a href='./view/register.html'><button type='button' class='btn btn-light'><i class='fa-solid fa-address-card'></i> Nueva cuenta</button></a>";
+                echo '</div>';
+            }
+            
+        ?>
+        <!-- <a href="./view/login.html"><button type="button" class="btn btn-light"><i class="fa-solid fa-right-to-bracket"></i> acceder</button></a>
+        <a href="./view/register.html"><button type="button" class="btn btn-light"><i class="fa-solid fa-address-card"></i> Nueva cuenta</button></a> -->
     </main>
 
 </body>

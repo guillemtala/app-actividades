@@ -3,14 +3,14 @@ session_start();
 $connection = mysqli_connect('localhost', 'root', '', 'bd_actividades');
 /* $sql = "SELECT * FROM tbl_like WHERE actividad_fk={$_GET['id']};";
 $listadodept= mysqli_query($connection, $sql); */
-$likes=1;
+/* $likes=1; */
 $idact=$_GET['id'];
 $correo_act=$_SESSION['email_usu'];
 /* echo $correo_act; */
 $sql2 = "SELECT id FROM `tbl_usuarios` WHERE `email_usuario`='{$correo_act}'";
 
-$sql3="SELECT likes FROM tbl_like WHERE actividad_fk='{$_GET['id']}';";
-$likesquehay= mysqli_query($connection, $sql3);
+/* $sql3="SELECT likes FROM tbl_like WHERE actividad_fk='{$_GET['id']}';"; */
+/* $likesquehay= mysqli_query($connection, $sql3); */
 /* echo $likesquehay; */
 /* $sql2="SELECT * FROM `tbl_usuarios` WHERE `email_usuario` LIKE {$correo_act}" */
 /* echo $sql2; */
@@ -19,9 +19,16 @@ $row = mysqli_fetch_array($idusuario);
 /* print_r($row); */
 $idusuario2 = $row[0];
 
-$row2 = mysqli_fetch_array($likesquehay);
+/* $row2 = mysqli_fetch_array($likesquehay); */
 /* print_r($row2); */
-$likesquehay2=$row2[0];
+/* $likesquehay2=$row2[0]; */
+
+/* $sql="SELECT * FROM `tbl_like` WHERE `email_usuario`='{$correo_act}' AND ``" */
+$sql4 = "INSERT INTO `tbl_like` (`usuario_fk`, `actividad_fk`) VALUES ('$idusuario2', '$idact')";
+        
+    $listadodept2= mysqli_query($connection, $sql4);
+
+    echo $sql4;
 /* echo $likesquehay2; */
 /* echo $idusuario2; */
 /* $comprobar= "SELECT usuario_fk FROM tbl_like;";
@@ -38,22 +45,23 @@ while ($fila = mysqli_fetch_assoc($cons)){
         
     
 } */
-if(!empty($likesquehay)){
+/* if(!empty($likesquehay)){
     $likessum=$likesquehay2+1;
     $sql5 = "UPDATE `tbl_like` SET `likes` = '$likessum' WHERE actividad_fk='{$_GET['id']}';";
     $listadodept2= mysqli_query($connection, $sql5);
-    echo $sql5;
+    echo $sql5; */
 
     /* echo '<script type="text/javascript">';
     echo "muestra({$_GET['id']});";
     echo '</script>'; */
-    echo "<script>";
-    echo "muestra({$_GET['id']});";
-    echo "</script>";
+
     ?>
-    <script src="url.js"></script>
+    <!-- <script src="url.js"></script> -->
     <?php
-    /* header("Location:actividades.php"); */
+        /* echo "<script>";
+        echo "muestra({$_GET['id']});";
+        echo "</script>"; */
+/*     header("Location:actividades.php");
     
 }else{
     $sql4 = "INSERT INTO `tbl_like` (`usuario_fk`, `actividad_fk`, `likes`) VALUES ('$idusuario2', '$idact', '$likes')";
@@ -62,4 +70,4 @@ if(!empty($likesquehay)){
 
     echo $sql4;
     
-}
+} */

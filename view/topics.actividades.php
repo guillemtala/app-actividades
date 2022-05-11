@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">#AppName</a>
+            <a class="navbar-brand" href="../index.php">#AppName</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -90,18 +90,18 @@
                 /* echo $sql; */
                 $listadodept= mysqli_query($connection, $sql);
 
-                $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
-                foreach ($listadodept as $alumno) {
+                $ruta="../img/";
+                foreach ($listadodept as $actividad) {
                     ?>
                     <div class="column-3 padding-mobile">
                         <?php
-                    $rutacompleta="http://".$ruta.$alumno['foto_act'];
+                    $rutacompleta=$ruta.$actividad['foto_act'];
                     /* echo $rutacompleta;
                     
                     echo '<br>'; */
-                    /* echo $alumno['id']; */
-                    /* $id=$alumno['id']; */
-                    echo  "<a href='./actividad.php?id={$alumno['id']}'><img src='{$rutacompleta}' class='target'></a>";
+                    /* echo $actividad['id']; */
+                    /* $id=$actividad['id']; */
+                    echo  "<a href='./actividad.php?id={$actividad['id']}'><img src='{$rutacompleta}' class='target'></a>";
                     ?>
                     <div style="float: right;" class="padding-m">
                 <button class="btn btn-light m-1" type="submit"><i class="fa-solid fa-link"></i></button>
@@ -126,18 +126,18 @@
                 /* echo $sql; */
                 $listadodept2= mysqli_query($connection, $sql2);
 
-                $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
-                foreach ($listadodept2 as $alumno) {
+                $ruta="../img/";
+                foreach ($listadodept2 as $actividad) {
                     ?>
                     <div class="column-3 padding-mobile">
                         <?php
-                    $rutacompleta="http://".$ruta.$alumno['foto_act'];
+                    $rutacompleta=$ruta.$actividad['foto_act'];
                     /* echo $rutacompleta;
                     
                     echo '<br>'; */
-                    /* echo $alumno['id']; */
-                    /* $id=$alumno['id']; */
-                    echo  "<a href='./actividad.php?id={$alumno['id']}'><img src='{$rutacompleta}' class='target'></a>";
+                    /* echo $actividad['id']; */
+                    /* $id=$actividad['id']; */
+                    echo  "<a href='./actividad.php?id={$actividad['id']}'><img src='{$rutacompleta}' class='target'></a>";
                     ?>
                     <div style="float: right;" class="padding-m">
                 <button class="btn btn-light m-1" type="submit"><i class="fa-solid fa-link"></i></button>

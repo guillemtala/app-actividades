@@ -29,10 +29,10 @@
                     $connection = mysqli_connect('localhost', 'root', '', 'bd_actividades');
                     $sql = "SELECT * FROM tbl_actividades WHERE id={$_GET['id']}";
                     $listadodept= mysqli_query($connection, $sql);
-                    $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
+                    $ruta="../img/";
 
-                    foreach ($listadodept as $alumno){
-                        $rutacompleta="http://".$ruta.$alumno['foto_act'];
+                    foreach ($listadodept as $actividad){
+                        $rutacompleta=$ruta.$actividad['foto_act'];
                         
                         /* echo $rutacompleta; */
                         ?>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="flex">
                         <?php
-                        echo  "<h4>{$alumno['titulo_act']}</h4>";
+                        echo  "<h4>{$actividad['titulo_act']}</h4>";
                         ?>
                         </div>
                         <div class="mb-3 flex">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex">
                         <?php
-                        echo  "<h4>{$alumno['desc_act']}</h4>";
+                        echo  "<h4>{$actividad['desc_act']}</h4>";
                         ?>
                         </div>
                         <div class="mb-3 flex">
@@ -65,12 +65,12 @@
                         </div>
                         <div class="flex">
                         <?php
-                        echo  "<h4>{$alumno['hora_act']}</h4>";
+                        echo  "<h4>{$actividad['hora_act']}</h4>";
                         ?>
                         </div>
                         <?php
                         $connection = mysqli_connect('localhost', 'root', '', 'bd_actividades');
-                        $correo_act=$alumno['correo_act'];
+                        $correo_act=$actividad['correo_act'];
                         /* echo $correo_act; */
                         $sql2 = "SELECT * FROM `tbl_usuarios` WHERE `email_usuario`='{$correo_act}'";
                         /* $sql2="SELECT * FROM `tbl_usuarios` WHERE `email_usuario` LIKE {$correo_act}" */

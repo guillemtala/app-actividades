@@ -19,13 +19,13 @@ function copiar(id) {
 
 }
 
-function muestra(i) {
-    var mostrar = document.getElementById("cambio" + i);
+function muestra(id) {
+    var mostrar = document.getElementById("cambio" + id);
     console.log(mostrar);
     if (mostrar.className == "btn btn-light m-1") {
         mostrar.className = "btn btn-danger m-1";
     } else if (mostrar.className == "btn btn-danger m-1") {
         mostrar.className = "btn btn-light m-1";
     }
-    window.location.href = "./like.php?id=" + i;
+    window.location.assign("./like.php?id=" + id);
 }

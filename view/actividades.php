@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">#AppName</a>
+            <a class="navbar-brand" href="../index.php">#AppName</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -86,12 +86,12 @@
                 $sql3 = "SELECT * FROM tbl_actividades WHERE opcion_act='Publico' ORDER BY hora_act ASC LIMIT $cantidadPaginas, $cantidad;";
                 $query2 = mysqli_query($connection, $sql3);
 
-                $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
+                $ruta="../img/";
                 foreach ($query2 as $actividad) {
                     ?>
                     <div class="column-5 padding-s">
                         <?php
-                    $rutacompleta="http://".$ruta.$actividad['foto_act'];
+                    $rutacompleta=$ruta.$actividad['foto_act'];
                     /* echo $rutacompleta;
                     
                     echo '<br>'; */
@@ -121,7 +121,7 @@
                 $numFilas2 = mysqli_num_rows($listadodept);
                 /* echo $numFilas2; */
                 /* $i = 0;  */
-                $ruta=$_SERVER['SERVER_NAME']."/www/app-actividades/img/";
+                $ruta="../img/";
                 foreach ($listadodept as $actividad) {
 /*                     if($i <= $numFilas2){
                       $i=$i+1;  
@@ -131,7 +131,7 @@
                     ?>
                     <div class="column-3 padding-mobile">
                         <?php
-                    $rutacompleta="http://".$ruta.$actividad['foto_act'];
+                    $rutacompleta=$ruta.$actividad['foto_act'];
                     /* echo $rutacompleta;
                     
                     echo '<br>'; */
@@ -143,18 +143,11 @@
 
                     <?php
                     
-                /* echo "<button class='btn btn-light m-1' type='submit'><i class='fa-solid fa-link'></i></button>";
-                
-                $boton= "<button class='btn btn-light m-1 click' id='cambio$i' type='submit'><i class='fa-solid fa-heart'></i></button>";
-                echo $boton; */
-               /*  if(($boton==false)){
-                    echo "<button class='btn btn-danger m-1 click' id='cambio$i' type='submit'><i class='fa-solid fa-heart'></i></button>";
-                } */
                 
                 echo "<button class='btn btn-light m-1' type='submit' onclick='copiar({$actividad['id']});'><i class='fa-solid fa-link'></i></button>";
                 /* echo "<input style='' type='text' value='http://localhost/www/app-actividades/view/actividad.php?id={$actividad['id']}' id='copy$i'>"; */
                     if(isset($_SESSION["email_usu"])){
-                            echo "<a href='./like.php?id={$actividad['id']}'><button' id='cambio{$actividad['id']}' class='btn btn-light m-1' type='submit'><i class='fa-solid fa-heart'></i></button></a>";
+                            echo "<a><button onclick='muestra({$actividad['id']});' id='cambio{$actividad['id']}' class='btn btn-light m-1' type='submit'><i class='fa-solid fa-heart'></i></button></a>";
                         }else{
                             echo "<a href='./login.html'><button class='btn btn-light m-1' type='submit'><i class='fa-solid fa-heart'></i></button></a>";
                         }
